@@ -1,0 +1,10 @@
+(ns cl.zippers
+  (:require [clojure.zip :as zip]))
+
+(def zipper (zip/seq-zip '(1 (2 3) 4)))
+
+
+
+(flattenize '(1 (2 (3 4)) 5))
+
+

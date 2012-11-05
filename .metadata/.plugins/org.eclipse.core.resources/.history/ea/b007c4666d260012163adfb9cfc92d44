@@ -1,0 +1,8 @@
+(ns cl.error-test
+  (:use cl.error
+        clojure.test))
+
+(deftest factorial-test
+  (are [n r] (= ( 
+
+

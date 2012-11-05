@@ -1,0 +1,16 @@
+(ns cl.monads
+  (:use clojure.algo.monads))
+
+(defn +?
+  [a b c d]
+  (with-monad maybe-m
+    (domonad [a? a
+              b? b
+              c? c
+              d? d]
+             (+ a b c d))))
+    
+    
+    ;(m-lift 4 +)))
+
+(+? 1 2 nil 3)

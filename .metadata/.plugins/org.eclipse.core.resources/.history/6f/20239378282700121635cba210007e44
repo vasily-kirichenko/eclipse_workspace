@@ -1,0 +1,21 @@
+(ns cl.zippers
+  (:require [clojure.zip :as zip]))
+
+(def zipper (zip/seq-zip '(1 (2 3) 4)))
+
+(defn flattenize [tree]
+  (letfn [(flatten-zipper [so-far zipper]
+          (cond (zip/end? zipper)
+                so-far
+                
+                (zip/branch? zipper)
+                (recur so-far (zip/next zipper))
+                
+                :else
+                (recur (cons (zip/node zipper) so-far) 
+                                (zip/next zipper))))]
+         (reverse (flatten-zipper '() (zip/seq-zip tree)))))
+
+(time (def flat-tree (flattenize (range 1000000))))
+
+

@@ -1,0 +1,10 @@
+(ns cl.error-test
+  (:use cl.error
+        clojure.test))
+
+(deftest result-test
+  (are [n r] (= (result n) r)
+       0 1
+       1 1))
+
+

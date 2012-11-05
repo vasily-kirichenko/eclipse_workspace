@@ -1,0 +1,39 @@
+(ns cl.error
+  (:use clojure.algo.monads))
+
+(defn oops!
+  [reason & args]
+  (with-meta (merge {:reason reason}
+                    (apply hash-map args))
+    {:type :error}))
+
+(defn oopsie?
+  [value]
+  (= (type value) :error))
+
+(defn factorial 
+  [n]
+  (cond (< n 0)
+        (oops! "Factorial can never be less than zero." :number n)
+        (< n 2)
+        1
+        :else
+        (* n (factorial (dec n)))))
+
+(defn decider
+  [step-value continuation]
+  (if (oopsie? step-value)
+    step-value
+    (continuation step-value)))
+
+(def error-monad
+  (monad [m-result identity
+          m-bind decider]))
+
+(def result
+  (with-monad error-monad
+    (domonad [big-number (factorial 5)
+              even-bigger (* 2 big-number)]
+             (repeat :a even-bigger))))
+
+result

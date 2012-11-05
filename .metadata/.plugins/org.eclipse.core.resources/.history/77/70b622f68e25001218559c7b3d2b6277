@@ -1,0 +1,55 @@
+(ns clojure-learning.object1)
+
+(defn Point
+  [x y]
+  {:x x 
+   :y y
+   :__class_symbol__ 'Point
+   :__methods__ {
+                 :class :__class_symbol__
+                 :shift (fn [this xinc yinc]
+                          (make Point 
+                                (+ (send-to this :x) xinc)
+                                (+ (send-to this :y) yinc)))
+                 :x :x
+                 :y :y
+                 
+                 :add (fn [this another]
+                        (send-to this :shift 
+                                 (send-to another :x)
+                                 (send-to another :y)))  
+                  }
+   })
+
+(defn add-with-shift
+  [f s]
+  (shift f (x s) (y s)))
+
+(defn Triangle
+  [p1 p2 p3]
+  {:p1 p1, :p2 p2, :p3 p3, :__class_symbol__ 'Triangle})
+
+(defn make 
+  [type & args]
+  (apply type args))
+
+(defn send-to
+  [object message & args]
+  (apply (message (:__methods__ object)) object args))
+
+(let [p1 (make Point 1 2)]
+  ;((:shift (:__methods__ p1)) p1 10 20)
+  ;(send-to p1 :shift 100 200)
+  ;(send-to p1 :x)
+  (send-to p1 :add (make Point 10 20))
+  ;(equal-triangles? t1 t2)
+  ;(make Point 2 3)
+  ;(println p1)
+  ;(println (shift p1 1 2))
+  ;(println (add p1 p2))
+  ;(println (add-with-shift p1 p2))
+  )
+  
+  
+  
+  

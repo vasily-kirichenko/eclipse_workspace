@@ -1,0 +1,73 @@
+(ns cl.lazy)
+
+(defn rrange [first past-end]
+  (new clojure.lang.LazySeq 
+       (fn []
+         (if (= first past-end)
+           nil
+           (cons first 
+                 (rrange (inc first) past-end))))))
+
+(defn mmap [f coll]
+  (new clojure.lang.LazySeq
+       (fn []
+         (if (empty? coll)
+           nil
+           (cons (f (first coll))
+                 (mmap f (rest coll)))))))
+
+(defn ffilter [pred coll]
+  (new clojure.lang.LazySeq
+       (fn []
+         (if (empty? coll)
+           nil
+           (let [first (first coll)]
+             (if (pred first)
+               (cons first (ffilter pred (rest coll)))
+               (ffilter pred (rest coll))))))))
+
+;(mmap #(if (even? %) (+ 1000 %) %) [1 2 3 4])
+;(take 8 (range))
+;(ffilter #(and (odd? %) (> 20 %)) (range 100))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

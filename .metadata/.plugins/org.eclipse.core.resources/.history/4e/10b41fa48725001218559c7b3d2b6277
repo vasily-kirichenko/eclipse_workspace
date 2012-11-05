@@ -1,0 +1,32 @@
+(ns clojure-learning.object1)
+
+(defn Point
+  [x y]
+  {:x x 
+   :y y
+   :__class_symbol__ 'Point})
+
+(def x :x)
+(def y :y)
+(def class-of :__class_symbol__)
+
+(defn shift
+  [this xinc yinc]
+  (Point (+ (x this) xinc)
+         (+ (y this) yinc)))
+
+(defn add
+  [first second]
+  (Point (+ (x first) (x second))
+         (+ (y first) (y second))))  
+
+(defn add-with-shift
+  [f s]
+  (shift f (x s) (y s)))
+
+(let [p1 (Point 2 3)
+      p2 (Point 20 30)]
+  (println p1)
+  (println (shift p1 1 2))
+  (println (add p1 p2))
+  (println (add-with-shift p1 p2)))

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;cl/src/cl/mathing.clj&apos; to &apos;matching.clj&apos;" description="Rename resource &apos;mathing.clj&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/cl/mathing.clj" name="matching.clj" stamp="1352103223801" updateReferences="true"/>
+</session>

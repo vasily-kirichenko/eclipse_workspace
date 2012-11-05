@@ -1,0 +1,10 @@
+(ns cl.monads
+  (:use clojure.algo.monads))
+
+(def tolerate-plus
+  (with-monad maybe-m
+    (m-lift 4 +)))
+
+(tolerate-plus 1 2 nil 3)
+;(+ 1 2 nil 3)
+

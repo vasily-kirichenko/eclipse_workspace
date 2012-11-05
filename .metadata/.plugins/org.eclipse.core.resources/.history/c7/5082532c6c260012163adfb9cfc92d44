@@ -1,0 +1,2 @@
+cmdhistory=["(in-ns 'cl.error)\\n(defn factorial \\n  [n]\\n  (cond (< n 0)\\n        (oops\! \\"Factorial can never be less than zero.\\" \:number n)\\n        (< n 2)\\n        1\\n        \:else\\n        (* n (factorial (dec n)))))\\n(in-ns 'user)" "(in-ns 'cl.error)\\n(factorial 5)\\n(in-ns 'user)" "(in-ns 'cl.error)\\n(factorial 0)\\n(in-ns 'user)" "(in-ns 'cl.error)\\n(factorial -1)\\n(in-ns 'user)"]
+eclipse.preferences.version=1
